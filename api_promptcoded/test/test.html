@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Mocha Chai Unit Tests</title>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/mocha/mocha.css" />
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/8.0.1/mocha.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+	<div id="mocha"></div>
+	
+	<!-- file to test -->
+	<script src="../routes/users.js"></script>
+	
+	<!-- setup Mocha in Behavior Driven Development (BDD) mode -->
+    <script>
+		mocha.setup('bdd');
+        const { expect } = chai;
+	</script>
+
+	<!-- unit tests, loaded from file -->
+	<script src="users.test.js"></script>
+    <script src="../routes/metrics.js"></script>
+    <script src="../routes/attempts.js"></script>
+    
+    
+    <script>
+        describe('Codesample tests', function() {
+            it('should get a successful response from the API', function(done) {
+                axios.get('http://localhost:9000/')
+                    .then(function(response) {
+                        expect(response.status).to.equal(200);
+                        expect(response.data).to.be.an('object');
+                        done();
+                    })
+                    .catch(function(error) {
+                        done(error);
+                    });
+            });
+            it('should handle a 404 error', function(done) {
+                axios.get('http://localhost:9000/nonexistent')
+                    .then(function(response) {
+        
+                        done(new Error('Expected 404 error, but got successful response'));
+                    })
+                    .catch(function(error) {
+                        expect(error.response.status).to.equal(404);
+                        done();
+                    });
+            });
+            it('Database should have 7 codesamples', function(done) {
+                this.timeout(10000);
+                axios.get('http://localhost:9000/codesamples/count')
+                    .then(function(response) {
+                        expect(response.status).to.equal(200);
+                        expect(response.data).to.be.an('object');
+                        //console.log(response)
+                        expect(response.data.data).to.have.property('COUNT(*)', 7)
+                        done();
+                    })
+                    .catch(function(error) {
+                        expect(error.response.status).to.equal(404);
+                        done();
+                    });
+            });
+
+            it('Receive students for instructor dashboard', function(done){
+                axios.get('http://localhost:9000/users/students')
+                    .then(function(response){
+                        //console.log("hereeee")
+                        //console.log(response.data)
+                        expect(response.status).to.equal(200);
+                        expect(response.data.data).to.be.an('array');
+                        expect(response.data.data.length).to.be.above(0);
+                        response.data.data.forEach(function(item) {
+                             expect(item).to.have.keys(['name', 'username']);
+                        });
+                        done();
+                    })
+                    .catch(function(error){
+                        done(error);
+                    })
+            })
+            
+        });
+        
+    </script>
+    <script src="metrics.test.js"></script>
+    <script src="attempts.test.js"></script>
+    <script src="llmparsing.test.js"></script>
+    <!-- run Mocha -->
+    <script>
+		mocha.run();
+    </script>
+	
+</body>
+</html>

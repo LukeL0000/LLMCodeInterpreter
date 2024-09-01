@@ -1,0 +1,7 @@
+.open E:\Projects\CPSC310\Project-Groups-13-Lab-B\api_promptcoded\database\promptcoded.db
+create table Users(username text primary key, name text, password text, role text);
+create table CodeSamples(code_sample_id int primary key, sample_code text, code_description text, unit_tests text);
+create table Attempts(attempt_id INTEGER primary key AUTOINCREMENT, username text, code_sample_id int, timestamp datetime DEFAULT CURRENT_TIMESTAMP, test_result int, 
+reason_failed text, llm_code text, user_description text, retry_comment text, ticket_comment text, flagged int, FOREIGN KEY (username) REFERENCES Users(username), 
+FOREIGN KEY (code_sample_id) REFERENCES CodeSamples(code_sample_id));
+.tables

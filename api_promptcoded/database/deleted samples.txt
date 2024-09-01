@@ -1,0 +1,86 @@
+(3, 
+'function codeSample3 (foo) 
+{ 
+	let tempArray = []; 
+	for (let i = foo.length - 1; i >= 0; i--) {
+		tempArray.push(foo[i]);
+	}
+	return tempArray;
+}',
+'Reverses array foo', 
+'{
+	"codeSample":	"codeSample3",
+	"inputs": 	[
+			{"testCase": 1, "foo": [1, 4, 5]},
+			{"testCase": 2, "foo": ["world", "hello"]},
+			{"testCase": 3, "foo": [0, 0, 0]}
+		 	],
+	"outputs":	[
+			{"testCase": 1, "returnVal": [5, 4, 1]}, 
+			{"testCase": 2, "returnVal": ["hello", "world"]},
+			{"testCase": 3, "returnVal": [0, 0, 0]}
+			]
+}'),
+
+(9,
+'function codeSample9(foo, bar) {
+    let returnVal = [];
+
+    for(let i = 0; i < bar; i++) {
+        returnVal.push(foo[i])
+    }
+
+    return returnVal;
+}',
+'Returns the first bar elements of array foo', 
+'{
+	"codeSample":	"codeSample9",
+	"inputs": 	[
+			{"testCase": 1, "foo": ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"], "bar": 5},
+			{"testCase": 2, "foo": [1, 2, 3], "bar": 0},
+			{"testCase": 3, "foo": [1, 2, 3, 4, 5], "bar": 5}
+		 	],
+	"outputs":	[
+			{"testCase": 1, "returnVal": ["h", "e", "l", "l", "o"]}, 
+			{"testCase": 2, "returnVal": []},
+			{"testCase": 3, "returnVal": [1, 2, 3, 4, 5]}
+			]
+}'),
+
+(10,
+'function codeSample10(foo) {
+    let returnVal = [];
+
+    for (let i = foo.length - 1; i >= 0; i--) {
+        //index of smallest element in array foo
+        let min_index = i;
+
+        for(let j = foo.length - 1; j >= 0; j--) {
+            if(foo[j] < foo[min_index]) {
+                min_index = j;
+            }
+        }
+        
+        returnVal.push(foo[min_index]);
+        foo.splice(min_index, 1);
+    }
+
+    return returnVal;
+}',
+'Sorts the array', 
+'{
+	"codeSample":	"codeSample10",
+	"inputs": 	[
+			{"testCase": 1, "foo": [5, 1, 2, 4, 3]},
+			{"testCase": 2, "foo": [1, 2, -3]},
+			{"testCase": 3, "foo": [1]}
+		 	],
+	"outputs":	[
+			{"testCase": 1, "returnVal": [1, 2, 3, 4, 5]}, 
+			{"testCase": 2, "returnVal": [-3, 1, 2]},
+			{"testCase": 3, "returnVal": [1]}
+			]
+}'),
+
+
+(0, 'Test Code Sample', 'Test Code Sample', 'return true;'),

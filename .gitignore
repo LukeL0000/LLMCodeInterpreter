@@ -1,0 +1,9 @@
+# ignore node_modules (base directory)
+/node_modules/
+
+# ignore node_modules (api)
+/api_promptcoded/node_modules/
+
+# ignore node_modules (react)
+/promptcoded/node_modules/
+

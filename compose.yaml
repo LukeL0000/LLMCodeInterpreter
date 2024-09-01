@@ -1,0 +1,54 @@
+services:
+  backend:
+    build:
+      context: ./api_promptcoded
+    environment:
+      NODE_ENV: production
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./api_promptcoded/database:/usr/src/app/database
+    networks:
+      - my-network
+    depends_on:
+      - ollama-pull
+    
+  ollama-pull:
+    image: docker/genai:ollama-pull
+    environment:
+      - LLM=tinyllama
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    depends_on:
+      - ollama
+
+  frontend:
+    build:
+      context: ./promptcoded
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - my-network
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_volume:/root/.ollama
+      - .:/code
+    container_name: ollama
+    restart: always
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0
+
+volumes:
+  ollama_volume:
+
+networks:
+  my-network:
+    driver: bridge
