@@ -65,26 +65,3 @@ code sample 8 (number) -> array **very finicky LLM code! :
 
 Please allow up to a minute for the LLM to complete the generation.
 Most cases will only take several seconds.
---- 
-
-## Unit Tests:
-Unit tests for internal logic are located under Project-Groups-13-Lab-B/api_promptcoded/test.
-
-Instructions to run tests:
-- Ensure the docker containers are running before proceeding to the following steps.
-- Open the test.html file for the test suite you would like to run in your preferred browser. You can do this by right clicking on the .html file under the test folder, select "copy path", and paste the path in your browser's address bar.
-  - Or copy into your browser: \<location of cloned repo\>/api_promptcoded/test/test.html
-- All tests will automatically run when you open the page. A summary of the number of passed and failed tests, the time it took to run the tests, and progress is on the top right of the page.
-- Under the header, all of the tests for the Test Suite's library are listed. A green check mark indicates the test is passing and a red x indicated the test is failing.
-- To view the details of a specific test, click that test's description.
-- To run a specific test again, click the run button to the right side of the page for that test.
-
-
-## System/Integration Testing
-System Integration testing was done manually. The system testing document for these manual tests is located on google drive, available VIA the following link:
-
-https://docs.google.com/document/d/1qosEBEF636POzpJO6LpRKkwOKU8A2ZNQ/edit?usp=drive_link&ouid=105092366829095023877&rtpof=true&sd=true
-
-### Icons and images reference 
-
-favicon: https://icons8.com/icon/19293/code
