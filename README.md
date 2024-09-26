@@ -8,8 +8,6 @@ This software also acts as a research tool for educational institutions as it co
 
 To improve on this basic functionality, some unique features that will be implemented include progress analysis for each student in the form of a student dashboard. Additionally, to improve fairness due to errors caused by the LLM, the web application will include a grading flag, allowing students to directly receive manual feedback about their descriptions from the instructors themselves.
 
-## Demo Video:
-https://drive.google.com/file/d/1Nk50DrT_nm-lVSagYGYEJY8gfU-ulVB9/view?usp=sharing
 
 ## Docker Compose:
 To prepare the docker container(s) for this project, run the following command under the project directory:
@@ -65,7 +63,7 @@ code sample 8 (number) -> array **very finicky LLM code! :
 
 ```
 
-Please allow up to a minute for the LLM to comlete the generation.
+Please allow up to a minute for the LLM to complete the generation.
 Most cases will only take several seconds.
 --- 
 
