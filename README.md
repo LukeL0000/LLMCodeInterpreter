@@ -1,4 +1,4 @@
-# LLM Code Interpreter
+# LLM Code Interpreter (aka PromptCoded)
 
 ## About the project:
 
